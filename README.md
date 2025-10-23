@@ -582,8 +582,8 @@ Built with these excellent libraries:
 Need help? Here's how to get support:
 
 1. 📖 Check the [documentation](README.md)
-2. 🔍 Search [existing issues](https://github.com/isahaq1/barcode-generator-npm/issues)
-3. 💬 Create a [new issue](https://github.com/isahaq1/barcode-generator-npm/issues/new)
+2. 🔍 Search [existing issues](https://github.com/isahaq1//npm-barcodegeneratop/issues)
+3. 💬 Create a [new issue](https://github.com/isahaq1//npm-barcodegeneratop/issues/new)
 
 ---
 
@@ -591,6 +591,6 @@ Need help? Here's how to get support:
 
 **Made with ❤️ by [Isahaq](https://github.com/isahaq1)**
 
-[⭐ Star this repo](https://github.com/isahaq1/barcode-generator-npm) • [🐛 Report Bug](https://github.com/isahaq1/barcode-generator-npm/issues) • [✨ Request Feature](https://github.com/isahaq1/barcode-generator-npm/issues)
+[⭐ Star this repo](https://github.com/isahaq1//npm-barcodegeneratop) • [🐛 Report Bug](https://github.com/isahaq1//npm-barcodegeneratop/issues) • [✨ Request Feature](https://github.com/isahaq1//npm-barcodegeneratop/issues)
 
 </div>
