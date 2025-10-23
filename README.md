@@ -1,81 +1,58 @@
 # Isahaq Barcode Generator
 
-A universal barcode generator package supporting **32+ barcode types** (linear, 2D, postal, stacked, and auto-detection variants), multiple output formats, CLI, and Express.js integration.
+> A comprehensive Node.js barcode generation library supporting 32+ barcode types with Express.js integration and CLI tools
 
-## 🚀 Features
+[![npm version](https://img.shields.io/npm/v/isahaq-barcode.svg)](https://www.npmjs.com/package/isahaq-barcode)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- **32+ Barcode Types**: Linear, 2D, postal, stacked, and auto-detection variants
-- **Multiple Output Formats**: PNG, SVG, HTML, JPG, PDF
-- **Express.js Integration**: Middleware and route helpers
-- **CLI Tool**: Command-line interface for quick barcode generation
-- **QR Code Builder**: Fluent API for advanced QR code generation
-- **Validation**: Built-in data validation for different barcode types
-- **Customization**: Size, colors, margins, and more options
-- **Batch Generation**: Generate multiple barcodes at once
-- **Watermarking**: Add logos and watermarks to QR codes
+---
+
+## Table of Contents
+
+- [Features](#-features)
+- [Installation](#-installation)
+- [Quick Start](#-quick-start)
+- [Supported Barcode Types](#-supported-barcode-types)
+- [Usage Examples](#-usage-examples)
+- [Express.js Integration](#-expressjs-integration)
+- [CLI Usage](#-cli-usage)
+- [API Reference](#-api-reference)
+- [Contributing](#-contributing)
+
+---
+
+## ✨ Features
+
+| Feature               | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| **32+ Barcode Types** | Linear, 2D, postal, stacked, and auto-detection variants |
+| **Multiple Formats**  | PNG, SVG, HTML, JPG, PDF output support                  |
+| **Framework Ready**   | Express.js middleware and route helpers included         |
+| **CLI Tool**          | Generate barcodes directly from terminal                 |
+| **Advanced QR Codes** | Logos, watermarks, labels, and customization             |
+| **Validation**        | Built-in data validation for all barcode types           |
+| **Batch Processing**  | Generate multiple barcodes simultaneously                |
+| **High Performance**  | Optimized for enterprise-scale generation                |
+
+---
 
 ## 📦 Installation
-
-### Via npm
 
 ```bash
 npm install isahaq-barcode
 ```
 
-### Requirements
+**Requirements:** Node.js 14.0 or higher
 
-- Node.js 14.0 or higher
-- Canvas library (automatically installed)
+**Global CLI Installation:**
 
-## 🔧 Why Use This Package?
+```bash
+npm install -g isahaq-barcode
+```
 
-1. **Comprehensive Support**: 32+ barcode types including industry standards and auto-detection
-2. **Multiple Formats**: Generate barcodes in PNG, SVG, HTML, JPG, and PDF
-3. **Express.js Ready**: Seamless integration with Express.js framework
-4. **CLI Support**: Generate barcodes from command line
-5. **Advanced QR Codes**: Customizable QR codes with logos and labels
-6. **Validation**: Built-in data validation for each barcode type
-7. **Performance**: Optimized for high-volume generation
-8. **Extensible**: Easy to add new barcode types and renderers
+---
 
-## 📋 Supported Barcode Types (32+ Types)
-
-### Linear Barcodes
-
-- **Code128** (A, B, C, Auto)
-- **Code39** (Standard, Checksum, Extended, Auto)
-- **Code93**
-- **Code25** (Standard, Auto)
-- **Code32** (Italian Pharmacode)
-- **Standard25** (Standard, Checksum)
-- **Interleaved25** (Standard, Checksum, Auto)
-- **MSI** (Standard, Checksum, Auto)
-
-### EAN/UPC Family
-
-- **EAN13**, **EAN8**, **EAN2**, **EAN5**
-- **UPC-A**, **UPC-E**
-- **ITF14**
-
-### Postal Barcodes
-
-- **POSTNET**, **PLANET**, **RMS4CC**, **KIX**, **IMB**
-
-### Specialized Barcodes
-
-- **Codabar**, **Code11**, **PharmaCode**, **PharmaCodeTwoTracks**
-
-### 2D Matrix Codes
-
-- **QRCode**, **DataMatrix**, **Aztec**, **PDF417**, **MicroQR**, **Maxicode**
-
-### Stacked Linear Codes
-
-- **Code16K**, **Code49**
-
-## 🛠️ Usage
-
-### Basic Node.js Usage
+## 🚀 Quick Start
 
 ```javascript
 const BarcodeGenerator = require('isahaq-barcode');
@@ -86,93 +63,112 @@ const pngBuffer = BarcodeGenerator.png('1234567890', 'code128');
 // Generate SVG barcode
 const svgString = BarcodeGenerator.svg('1234567890', 'ean13');
 
-// Generate HTML barcode
-const htmlString = BarcodeGenerator.html('1234567890', 'code39');
+// Generate QR code with logo
+const qrCode = BarcodeGenerator.modernQr({
+  data: 'https://example.com',
+  size: 300,
+  logoPath: 'path/to/logo.png',
+  label: 'Scan me!',
+});
 
-// Generate PDF barcode
-const pdfBuffer = await BarcodeGenerator.pdf('1234567890', 'code128');
+await qrCode.saveToFile('qr-code.png');
 ```
 
-### Display Barcode as Base64 Image (PNG)
+---
+
+## 📊 Supported Barcode Types
+
+### Linear Barcodes (1D)
+
+| Type           | Variants                           | Use Case                      |
+| -------------- | ---------------------------------- | ----------------------------- |
+| **Code 128**   | A, B, C, Auto                      | General purpose, high density |
+| **Code 39**    | Standard, Extended, Checksum, Auto | Alphanumeric, automotive      |
+| **Code 93**    | -                                  | Compact alphanumeric          |
+| **EAN Family** | EAN-13, EAN-8, EAN-2, EAN-5        | Retail products (Europe)      |
+| **UPC Family** | UPC-A, UPC-E                       | Retail products (USA)         |
+| **Code 25**    | Standard, Interleaved, Auto        | Industrial, logistics         |
+| **ITF-14**     | -                                  | Shipping containers           |
+| **MSI**        | Standard, Checksum, Auto           | Inventory management          |
+| **Codabar**    | -                                  | Libraries, blood banks        |
+| **Code 11**    | -                                  | Telecommunications            |
+
+### 2D Barcodes
+
+| Type            | Data Capacity     | Use Case                |
+| --------------- | ----------------- | ----------------------- |
+| **QR Code**     | Up to 4,296 chars | URLs, payments, general |
+| **Data Matrix** | Up to 2,335 chars | Small item marking      |
+| **Aztec**       | Up to 3,832 chars | Transport tickets       |
+| **PDF417**      | Up to 1,850 chars | IDs, boarding passes    |
+| **Micro QR**    | Up to 35 chars    | Compact applications    |
+| **MaxiCode**    | Up to 93 chars    | Package tracking        |
+
+### Postal Barcodes
+
+**POSTNET** • **PLANET** • **RMS4CC** • **KIX** • **IMB**
+
+### Specialized
+
+**Code 32** (Italian Pharmacode) • **PharmaCode** • **PharmaCodeTwoTracks** • **Code 16K** • **Code 49**
+
+---
+
+## 💻 Usage Examples
+
+### Basic Generation
 
 ```javascript
 const BarcodeGenerator = require('isahaq-barcode');
 
-// Generate barcode
-const barcodeBuffer = BarcodeGenerator.png('1234567890', 'code128');
-
-// Convert to base64
-const barcodeImage = barcodeBuffer.toString('base64');
-console.log(
-  `<img src="data:image/png;base64,${barcodeImage}" alt="Barcode" />`
-);
-
-// With custom options
-const customBarcode = BarcodeGenerator.png('1234567890', 'code128', {
+// PNG with custom options
+const barcode = BarcodeGenerator.png('1234567890', 'code128', {
   width: 3,
   height: 150,
-  displayValue: false,
-  foregroundColor: '#FF0000',
+  displayValue: true,
+  foregroundColor: '#000000',
   backgroundColor: '#FFFFFF',
+  margin: 10,
 });
+
+// Convert to Base64 for web display
+const base64Image = barcode.toString('base64');
+console.log(`<img src="data:image/png;base64,${base64Image}" alt="Barcode" />`);
 ```
 
-### QR Code with Logo and Watermark
+### Advanced QR Code with Logo
 
 ```javascript
-const BarcodeGenerator = require('isahaq-barcode');
-
 const qrCode = BarcodeGenerator.modernQr({
   data: 'https://example.com',
   size: 300,
   margin: 10,
+
+  // Logo configuration
+  logoPath: 'path/to/logo.png',
+  logoSize: 60, // Percentage
+
+  // Text elements
+  label: 'Scan me!',
+  watermark: 'Company Name',
+  watermarkPosition: 'bottom-center',
+
+  // Colors
   foregroundColor: [0, 0, 0],
   backgroundColor: [255, 255, 255],
-  logoPath: 'path/to/logo.png', // Logo in the center
-  logoSize: 60, // Logo size as percentage
-  label: 'Scan me!', // Label below QR code
-  watermark: 'Watermark Text', // Watermark
-  watermarkPosition: 'center',
-  errorCorrectionLevel: 'H', // Use H for better logo support
+
+  // Error correction (H recommended for logos)
+  errorCorrectionLevel: 'H',
 });
 
 // Save to file
-await qrCode.saveToFile('qr-code-with-logo.png');
+await qrCode.saveToFile('qr-code.png');
 
 // Get as data URI
 const dataUri = await qrCode.getDataUri();
-console.log(`<img src="${dataUri}" alt="QR Code with Logo" />`);
 ```
 
-### Using the Service Class
-
-```javascript
-const { BarcodeService } = require('isahaq-barcode');
-
-const barcodeService = new BarcodeService();
-
-// Generate different formats
-const pngData = barcodeService.png('1234567890', 'code128');
-const svgData = barcodeService.svg('1234567890', 'ean13');
-const htmlData = barcodeService.html('1234567890', 'code39');
-
-// Generate with custom options
-const options = {
-  width: 300,
-  height: 100,
-  displayValue: true,
-  foregroundColor: '#000000',
-  backgroundColor: '#FFFFFF',
-};
-const customBarcode = barcodeService.generate(
-  '1234567890',
-  'code128',
-  'png',
-  options
-);
-```
-
-### QR Code Builder (Advanced)
+### QR Code Builder Pattern
 
 ```javascript
 const { QrCodeBuilder } = require('isahaq-barcode');
@@ -190,83 +186,115 @@ const qrCode = QrCodeBuilder.create()
   .format('png')
   .build();
 
-// Save to file
 await qrCode.saveToFile('qr-code.png');
-
-// Get data URI
-const dataUri = await qrCode.getDataUri();
-console.log(`<img src="${dataUri}" alt="QR Code">`);
 ```
 
-## 🎯 Express.js Integration
-
-### Basic Express.js Usage
+### Batch Generation
 
 ```javascript
-const express = require('express')
-const BarcodeGenerator = require('isahaq-barcode')
+const items = [
+  { data: '1234567890', type: 'code128', format: 'png' },
+  { data: '9876543210', type: 'code39', format: 'svg' },
+  { data: 'https://example.com', type: 'qrcode', format: 'png' },
+];
 
-const app = express()
+const results = BarcodeGenerator.batch(items);
 
-// Generate barcode endpoint
+results.forEach((result, index) => {
+  if (result.success) {
+    console.log(`✓ Barcode ${index} generated`);
+    // result.data contains the generated barcode
+  } else {
+    console.error(`✗ Barcode ${index} failed: ${result.error}`);
+  }
+});
+```
+
+### Data Validation
+
+```javascript
+const validation = BarcodeGenerator.validate('1234567890', 'code128');
+
+if (validation.valid) {
+  console.log('✓ Valid data');
+  console.log(`  Length: ${validation.length}`);
+  console.log(`  Charset: ${validation.charset}`);
+} else {
+  console.error(`✗ Invalid: ${validation.error}`);
+}
+```
+
+---
+
+## 🌐 Express.js Integration
+
+### Basic Route Implementation
+
+```javascript
+const express = require('express');
+const BarcodeGenerator = require('isahaq-barcode');
+
+const app = express();
+
+// Barcode endpoint
 app.get('/barcode/:data', (req, res) => {
-  const { data } = req.params
-  const { type = 'code128', format = 'png' } = req.query
+  const { data } = req.params;
+  const { type = 'code128', format = 'png' } = req.query;
 
   try {
-    let result
+    let result, contentType;
+
     switch (format) {
       case 'png':
-        result = BarcodeGenerator.png(data, type)
-        res.set('Content-Type', 'image/png')
-        break
+        result = BarcodeGenerator.png(data, type);
+        contentType = 'image/png';
+        break;
       case 'svg':
-        result = BarcodeGenerator.svg(data, type)
-        res.set('Content-Type', 'image/svg+xml')
-        break
+        result = BarcodeGenerator.svg(data, type);
+        contentType = 'image/svg+xml';
+        break;
       case 'html':
-        result = BarcodeGenerator.html(data, type)
-        res.set('Content-Type', 'text/html')
-        break
+        result = BarcodeGenerator.html(data, type);
+        contentType = 'text/html';
+        break;
       default:
-        throw new Error(`Unsupported format: ${format}`)
+        return res.status(400).json({ error: 'Invalid format' });
     }
 
-    res.send(result)
+    res.set('Content-Type', contentType);
+    res.send(result);
   } catch (error) {
-    res.status(400).json({ error: error.message })
+    res.status(400).json({ error: error.message });
   }
-})
+});
 
-// Generate QR code endpoint
-app.get('/qr/:data', (req, res) => {
-  const { data } = req.params
-  const { size = 300, logo, label } = req.query
+// QR code endpoint
+app.get('/qr/:data', async (req, res) => {
+  const { data } = req.params;
+  const { size = 300, logo, label } = req.query;
 
   try {
-    const qrOptions = {
+    const qrCode = BarcodeGenerator.modernQr({
       data: decodeURIComponent(data),
       size: parseInt(size),
       logoPath: logo,
-      label: label
-    }
+      label: label,
+    });
 
-    const qrCode = BarcodeGenerator.modernQr(qrOptions)
-    const result = await qrCode.generate()
-
-    res.set('Content-Type', 'image/png')
-    res.send(result)
+    const result = await qrCode.generate();
+    res.set('Content-Type', 'image/png');
+    res.send(result);
   } catch (error) {
-    res.status(400).json({ error: error.message })
+    res.status(400).json({ error: error.message });
   }
-})
+});
 
 app.listen(3000, () => {
-  console.log('Server running on port 3000')
-})
+  console.log('🚀 Barcode server running on port 3000');
+});
 ```
 
-### Express.js Middleware
+### Middleware Pattern
 
 ```javascript
 const express = require('express');
@@ -294,16 +322,16 @@ app.use('/api/barcode', (req, res, next) => {
           throw new Error(`Unsupported format: ${format}`);
       }
     } catch (error) {
-      throw new Error(`Barcode generation failed: ${error.message}`);
+      throw new Error(`Generation failed: ${error.message}`);
     }
   };
   next();
 });
 
-// Use the middleware
+// Route using middleware
 app.get('/api/barcode/:data', (req, res) => {
   const { data } = req.params;
-  const { type, format, width, height } = req.query;
+  const { type, format = 'png', width, height } = req.query;
 
   const options = {};
   if (width) options.width = parseInt(width);
@@ -311,240 +339,258 @@ app.get('/api/barcode/:data', (req, res) => {
 
   try {
     const result = req.generateBarcode(data, type, format, options);
-    res.set('Content-Type', getMimeType(format));
+    const mimeTypes = {
+      png: 'image/png',
+      svg: 'image/svg+xml',
+      html: 'text/html',
+    };
+
+    res.set('Content-Type', mimeTypes[format] || 'image/png');
     res.send(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
-
-function getMimeType(format) {
-  const mimeTypes = {
-    png: 'image/png',
-    svg: 'image/svg+xml',
-    html: 'text/html',
-  };
-  return mimeTypes[format] || 'image/png';
-}
 ```
+
+---
 
 ## 🖥️ CLI Usage
 
-### Install CLI globally
+### Generate Barcodes
 
 ```bash
-npm install -g isahaq-barcode
-```
-
-### Generate Barcode
-
-```bash
-# Generate PNG barcode
+# Basic PNG barcode
 barcode-generate barcode -d "1234567890" -t code128 -f png -o barcode.png
 
-# Generate SVG barcode
-barcode-generate barcode -d "1234567890" -t ean13 -f svg -o barcode.svg
+# SVG with custom dimensions
+barcode-generate barcode -d "1234567890" -t ean13 -f svg -w 3 -h 150 -o barcode.svg
 
-# Generate with custom options
-barcode-generate barcode -d "1234567890" -t code128 -f png -w 3 -h 150 --foreground "#FF0000" --background "#FFFFFF"
+# Custom colors
+barcode-generate barcode -d "1234567890" -t code128 \
+  --foreground "#FF0000" --background "#FFFFFF" -o red-barcode.png
 ```
 
-### Generate QR Code
+### Generate QR Codes
 
 ```bash
-# Generate QR code
-barcode-generate qr -d "https://example.com" -s 300 -f png -o qr.png
+# Basic QR code
+barcode-generate qr -d "https://example.com" -s 300 -o qr.png
 
-# Generate QR code with logo
-barcode-generate qr -d "https://example.com" -s 300 --logo "path/to/logo.png" --logo-size 60 -o qr-with-logo.png
+# QR code with logo
+barcode-generate qr -d "https://example.com" -s 300 \
+  --logo "path/to/logo.png" --logo-size 60 -o qr-logo.png
 
-# Generate QR code with watermark
-barcode-generate qr -d "https://example.com" -s 300 --watermark "Watermark Text" --watermark-position center -o qr-with-watermark.png
+# QR code with watermark
+barcode-generate qr -d "https://example.com" -s 300 \
+  --watermark "Company Name" --watermark-position bottom-center -o qr-watermark.png
 ```
 
-### Batch Generation
+### Batch Operations
 
 ```bash
-# Create batch file (batch.json)
-echo '[
+# Create batch configuration file
+cat > batch.json << EOF
+[
   {"data": "1234567890", "type": "code128", "format": "png"},
   {"data": "9876543210", "type": "code39", "format": "svg"},
   {"data": "https://example.com", "type": "qrcode", "format": "png"}
-]' > batch.json
+]
+EOF
 
 # Generate batch
 barcode-generate batch -i batch.json -o ./output
 ```
 
-### List Supported Types and Formats
+### Utility Commands
 
 ```bash
-# List barcode types
+# List supported barcode types
 barcode-generate types
 
 # List output formats
 barcode-generate formats
 
-# Validate data
+# Validate data for specific type
 barcode-generate validate -d "1234567890" -t code128
 ```
 
-## 📊 Advanced Features
+---
 
-### Batch Generation
+## 📚 API Reference
+
+### BarcodeGenerator (Static Methods)
+
+#### Generation Methods
 
 ```javascript
-const BarcodeGenerator = require('isahaq-barcode');
+BarcodeGenerator.png(data, type, options?)
+  // Returns: Buffer
 
-const items = [
-  { data: '1234567890', type: 'code128', format: 'png' },
-  { data: '9876543210', type: 'code39', format: 'svg' },
-  { data: 'https://example.com', type: 'qrcode', format: 'png' },
-];
+BarcodeGenerator.svg(data, type, options?)
+  // Returns: String
 
-const results = BarcodeGenerator.batch(items);
-results.forEach((result, index) => {
-  if (result.success) {
-    console.log(`Barcode ${index} generated successfully`);
-  } else {
-    console.error(`Barcode ${index} failed: ${result.error}`);
-  }
-});
+BarcodeGenerator.html(data, type, options?)
+  // Returns: String
+
+BarcodeGenerator.pdf(data, type, options?)
+  // Returns: Promise<Buffer>
+
+BarcodeGenerator.modernQr(options)
+  // Returns: QrCodeInstance
 ```
 
-### Validation
+#### Utility Methods
 
 ```javascript
-const BarcodeGenerator = require('isahaq-barcode');
+BarcodeGenerator.validate(data, type);
+// Returns: { valid: boolean, error?: string, length?: number, charset?: string }
 
-// Validate data for specific barcode type
-const validation = BarcodeGenerator.validate('1234567890', 'code128');
-if (validation.valid) {
-  console.log('Data is valid');
-  console.log(`Length: ${validation.length}`);
-  console.log(`Charset: ${validation.charset}`);
-} else {
-  console.error(`Invalid data: ${validation.error}`);
+BarcodeGenerator.batch(items);
+// Returns: Array<{ success: boolean, data?: Buffer|String, error?: string }>
+
+BarcodeGenerator.getBarcodeTypes();
+// Returns: Array<string>
+
+BarcodeGenerator.getRenderFormats();
+// Returns: Array<string>
+
+BarcodeGenerator.getWatermarkPositions();
+// Returns: Array<string>
+```
+
+### Options Object
+
+```javascript
+{
+  // Dimensions
+  width: 3,                    // Bar width
+  height: 150,                 // Bar height
+
+  // Display
+  displayValue: true,          // Show text below barcode
+  fontSize: 20,                // Text font size
+  textAlign: 'center',         // 'left' | 'center' | 'right'
+  textPosition: 'bottom',      // 'top' | 'bottom'
+  textMargin: 2,               // Space between bars and text
+
+  // Colors
+  background: '#ffffff',       // Background color
+  lineColor: '#000000',        // Bar color (alias: foregroundColor)
+
+  // Margins
+  margin: 10,                  // All sides
+  marginTop: 10,               // Individual sides
+  marginBottom: 10,
+  marginLeft: 10,
+  marginRight: 10
 }
 ```
 
-### Custom Renderer Options
+### QrCodeBuilder Methods
 
 ```javascript
-const BarcodeGenerator = require('isahaq-barcode');
+QrCodeBuilder.create(options?)
+  .data(string)                // Set data to encode
+  .size(number)                // QR code size in pixels
+  .margin(number)              // Margin size
+  .errorCorrectionLevel(level) // 'L' | 'M' | 'Q' | 'H'
+  .foregroundColor(rgb)        // [R, G, B]
+  .backgroundColor(rgb)        // [R, G, B]
+  .logoPath(string)            // Path to logo image
+  .logoSize(number)            // Logo size percentage
+  .label(string)               // Label text
+  .watermark(text, position)   // Watermark text and position
+  .format(format)              // 'png' | 'svg'
+  .build()                     // Build QR code instance
 
-const options = {
-  width: 3,
-  height: 150,
-  displayValue: true,
-  fontSize: 20,
-  textAlign: 'center',
-  textPosition: 'bottom',
-  textMargin: 2,
-  background: '#ffffff',
-  lineColor: '#000000',
-  margin: 10,
-  marginTop: 10,
-  marginBottom: 10,
-  marginLeft: 10,
-  marginRight: 10,
-};
-
-const barcode = BarcodeGenerator.png('1234567890', 'code128', options);
+// QR Code Instance Methods
+qrCode.generate()              // Returns: Promise<Buffer>
+qrCode.saveToFile(path)        // Returns: Promise<void>
+qrCode.getDataUri()            // Returns: Promise<string>
+qrCode.getString()             // Returns: Promise<string>
 ```
 
-### Available Watermark Positions
+### Watermark Positions
 
 ```javascript
-const BarcodeGenerator = require('isahaq-barcode');
-
-const positions = BarcodeGenerator.getWatermarkPositions();
-// Returns: ['top-left', 'top-right', 'bottom-left', 'bottom-right', 'center',
-//           'top-center', 'bottom-center', 'left-center', 'right-center']
+('top-left',
+  'top-center',
+  'top-right',
+  'left-center',
+  'center',
+  'right-center',
+  'bottom-left',
+  'bottom-center',
+  'bottom-right');
 ```
+
+---
 
 ## 🧪 Testing
 
 ```bash
-# Run tests
+# Run all tests
 npm test
 
-# Run tests with coverage
+# Run with coverage report
 npm run test:coverage
 
-# Run tests in watch mode
+# Watch mode for development
 npm run test:watch
 ```
 
-## 📝 API Reference
-
-### BarcodeGenerator
-
-#### Methods
-
-- `png(data, type, options)` - Generate PNG barcode
-- `svg(data, type, options)` - Generate SVG barcode
-- `html(data, type, options)` - Generate HTML barcode
-- `pdf(data, type, options)` - Generate PDF barcode
-- `modernQr(options)` - Generate QR code with advanced features
-- `validate(data, type)` - Validate data for barcode type
-- `batch(items)` - Generate multiple barcodes
-- `getBarcodeTypes()` - Get supported barcode types
-- `getRenderFormats()` - Get supported output formats
-- `getWatermarkPositions()` - Get watermark positions
-
-### QrCodeBuilder
-
-#### Methods
-
-- `create(options)` - Create new builder instance
-- `data(data)` - Set data to encode
-- `size(size)` - Set QR code size
-- `margin(margin)` - Set margin
-- `errorCorrectionLevel(level)` - Set error correction level
-- `foregroundColor(color)` - Set foreground color
-- `backgroundColor(color)` - Set background color
-- `logoPath(path)` - Set logo path
-- `logoSize(size)` - Set logo size
-- `label(text)` - Set label text
-- `watermark(text, position)` - Set watermark
-- `format(format)` - Set output format
-- `build()` - Build QR code
-- `generate()` - Generate QR code buffer
-- `saveToFile(path)` - Save to file
-- `getDataUri()` - Get data URI
-- `getString()` - Get QR code string
+---
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+We welcome contributions! Please follow these steps:
+
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+3. **Commit** your changes: `git commit -m 'Add amazing feature'`
+4. **Push** to the branch: `git push origin feature/amazing-feature`
+5. **Open** a Pull Request
+
+Please ensure your code:
+
+- Follows the existing code style
+- Includes tests for new features
+- Updates documentation as needed
+
+---
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+---
+
 ## 🙏 Acknowledgments
 
-- [JsBarcode](https://github.com/lindell/JsBarcode) - Barcode generation library
-- [QRCode](https://github.com/soldair/node-qrcode) - QR code generation library
-- [Canvas](https://github.com/Automattic/node-canvas) - Canvas implementation for Node.js
-- [PDFKit](https://github.com/foliojs/pdfkit) - PDF generation library
+Built with these excellent libraries:
 
-## 📞 Support
-
-If you have any questions or need help, please:
-
-1. Check the [documentation](README.md)
-2. Search [existing issues](https://github.com/isahaq1/barcode-generator-npm/issues)
-3. Create a [new issue](https://github.com/isahaq1/barcode-generator-npm/issues/new)
+- [JsBarcode](https://github.com/lindell/JsBarcode) - Barcode generation
+- [node-qrcode](https://github.com/soldair/node-qrcode) - QR code generation
+- [node-canvas](https://github.com/Automattic/node-canvas) - Canvas implementation
+- [PDFKit](https://github.com/foliojs/pdfkit) - PDF generation
 
 ---
 
+## 📞 Support
+
+Need help? Here's how to get support:
+
+1. 📖 Check the [documentation](README.md)
+2. 🔍 Search [existing issues](https://github.com/isahaq1/barcode-generator-npm/issues)
+3. 💬 Create a [new issue](https://github.com/isahaq1/barcode-generator-npm/issues/new)
+
+---
+
+<div align="center">
+
 **Made with ❤️ by [Isahaq](https://github.com/isahaq1)**
-#   n p m - b a r c o d e g e n e r a t o p 
- 
- 
+
+[⭐ Star this repo](https://github.com/isahaq1/barcode-generator-npm) • [🐛 Report Bug](https://github.com/isahaq1/barcode-generator-npm/issues) • [✨ Request Feature](https://github.com/isahaq1/barcode-generator-npm/issues)
+
+</div>
