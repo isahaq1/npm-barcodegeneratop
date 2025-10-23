@@ -1,0 +1,56 @@
+[
+  {
+    "data": "1234567890",
+    "type": "code128",
+    "format": "png",
+    "options": {
+      "width": 3,
+      "height": 150,
+      "displayValue": true
+    }
+  },
+  {
+    "data": "9876543210",
+    "type": "code39",
+    "format": "svg",
+    "options": {
+      "width": 2,
+      "height": 100,
+      "displayValue": false
+    }
+  },
+  {
+    "data": "1234567890123",
+    "type": "ean13",
+    "format": "png",
+    "options": {
+      "width": 2,
+      "height": 120,
+      "displayValue": true
+    }
+  },
+  {
+    "data": "https://example.com",
+    "type": "qrcode",
+    "format": "png",
+    "options": {
+      "size": 300,
+      "margin": 10,
+      "logoPath": "path/to/logo.png",
+      "logoSize": 60,
+      "label": "Scan me!"
+    }
+  },
+  {
+    "data": "https://github.com",
+    "type": "qrcode",
+    "format": "png",
+    "options": {
+      "size": 400,
+      "margin": 15,
+      "watermark": "GitHub",
+      "watermarkPosition": "center",
+      "errorCorrectionLevel": "H"
+    }
+  }
+]

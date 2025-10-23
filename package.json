@@ -1,0 +1,66 @@
+{
+  "name": "isahaq-barcode",
+  "version": "1.0.0",
+  "description": "A universal barcode generator package supporting multiple barcode types and output formats, with extra features like batch generation, watermarking, validation, CLI, and Express.js integration",
+  "main": "index.js",
+  "bin": {
+    "barcode-generate": "./bin/generate.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "build": "npm run lint && npm test",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "barcode",
+    "qrcode",
+    "generator",
+    "code128",
+    "code39",
+    "ean13",
+    "upc",
+    "datamatrix",
+    "pdf417",
+    "aztec",
+    "svg",
+    "png",
+    "pdf",
+    "cli",
+    "express",
+    "node"
+  ],
+  "author": "hmisahaq01@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "jsbarcode": "^3.11.5",
+    "qrcode": "^1.5.3",
+    "pdfkit": "^0.14.0",
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isahaq1/barcode-generator-npm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/isahaq1/barcode-generator-npm/issues"
+  },
+  "homepage": "https://github.com/isahaq1/barcode-generator-npm#readme"
+}
