@@ -2,7 +2,7 @@
  * SVG Renderer - Renders barcodes as SVG
  */
 
-const JsBarcode = require("jsbarcode");
+const JsBarcode = require('jsbarcode');
 
 class SVGRenderer {
   constructor() {
@@ -11,11 +11,11 @@ class SVGRenderer {
       height: 100,
       displayValue: true,
       fontSize: 20,
-      textAlign: "center",
-      textPosition: "bottom",
+      textAlign: 'center',
+      textPosition: 'bottom',
       textMargin: 2,
-      background: "#ffffff",
-      lineColor: "#000000",
+      background: '#ffffff',
+      lineColor: '#000000',
       margin: 10,
       marginTop: 10,
       marginBottom: 10,
@@ -37,7 +37,7 @@ class SVGRenderer {
       const renderOptions = { ...this.defaultOptions, ...options };
 
       // Create a temporary canvas element for JsBarcode
-      const canvas = document.createElement("canvas");
+      const canvas = document.createElement('canvas');
 
       // Generate barcode using JsBarcode
       JsBarcode(canvas, data, {
@@ -86,7 +86,7 @@ class SVGRenderer {
     svg += `<rect width="${width}" height="${height}" fill="${renderOptions.background}"/>`;
 
     // Add barcode representation (simplified)
-    if (type === "qrcode") {
+    if (type === 'qrcode') {
       svg += this.createQRCodeSVG(data, width, height, renderOptions);
     } else {
       svg += this.createLinearBarcodeSVG(data, width, height, renderOptions);
@@ -101,7 +101,7 @@ class SVGRenderer {
       }" fill="${renderOptions.lineColor}">${data}</text>`;
     }
 
-    svg += "</svg>";
+    svg += '</svg>';
     return svg;
   }
 
@@ -139,7 +139,7 @@ class SVGRenderer {
     const startX = 20;
     let currentX = startX;
 
-    let svg = "";
+    let svg = '';
     for (let i = 0; i < data.length; i++) {
       const char = data.charCodeAt(i);
       const barCount = (char % 5) + 1;
@@ -164,7 +164,7 @@ class SVGRenderer {
         tagName,
         setAttribute: () => {},
         appendChild: () => {},
-        toSVG: () => "<svg></svg>",
+        toSVG: () => '<svg></svg>',
       }),
     };
   }
@@ -176,29 +176,29 @@ class SVGRenderer {
    */
   mapBarcodeType(type) {
     const typeMap = {
-      code128: "CODE128",
-      code128a: "CODE128A",
-      code128b: "CODE128B",
-      code128c: "CODE128C",
-      code128auto: "CODE128",
-      code39: "CODE39",
-      code39extended: "CODE39",
-      code39checksum: "CODE39",
-      code39auto: "CODE39",
-      code93: "CODE93",
-      ean13: "EAN13",
-      ean8: "EAN8",
-      upca: "UPC",
-      upce: "UPC",
-      codabar: "codabar",
-      code11: "CODE11",
-      msi: "MSI",
-      pharmazentral: "pharmazentral",
-      interleaved25: "ITF",
-      standard25: "STD25",
+      code128: 'CODE128',
+      code128a: 'CODE128A',
+      code128b: 'CODE128B',
+      code128c: 'CODE128C',
+      code128auto: 'CODE128',
+      code39: 'CODE39',
+      code39extended: 'CODE39',
+      code39checksum: 'CODE39',
+      code39auto: 'CODE39',
+      code93: 'CODE93',
+      ean13: 'EAN13',
+      ean8: 'EAN8',
+      upca: 'UPC',
+      upce: 'UPC',
+      codabar: 'codabar',
+      code11: 'CODE11',
+      msi: 'MSI',
+      pharmazentral: 'pharmazentral',
+      interleaved25: 'ITF',
+      standard25: 'STD25',
     };
 
-    return typeMap[type] || "CODE128";
+    return typeMap[type] || 'CODE128';
   }
 
   /**

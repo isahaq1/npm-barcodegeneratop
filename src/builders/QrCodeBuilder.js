@@ -2,17 +2,17 @@
  * QR Code Builder - Advanced QR code generation with logo and watermark support
  */
 
-const QRCode = require("qrcode");
-const { createCanvas, loadImage } = require("canvas");
-const fs = require("fs").promises;
+const QRCode = require('qrcode');
+const { createCanvas, loadImage } = require('canvas');
+const fs = require('fs').promises;
 
 class QrCodeBuilder {
   constructor(options = {}) {
     this.options = {
-      data: "",
+      data: '',
       size: 300,
       margin: 10,
-      errorCorrectionLevel: "M",
+      errorCorrectionLevel: 'M',
       foregroundColor: [0, 0, 0],
       backgroundColor: [255, 255, 255],
       logoPath: null,
@@ -21,8 +21,8 @@ class QrCodeBuilder {
       labelFont: null,
       labelFontSize: 16,
       watermark: null,
-      watermarkPosition: "center",
-      format: "png",
+      watermarkPosition: 'center',
+      format: 'png',
       ...options,
     };
   }
@@ -144,7 +144,7 @@ class QrCodeBuilder {
    * @param {string} position - Watermark position
    * @returns {QrCodeBuilder} Builder instance
    */
-  watermark(watermark, position = "center") {
+  watermark(watermark, position = 'center') {
     this.options.watermark = watermark;
     this.options.watermarkPosition = position;
     return this;
@@ -213,7 +213,7 @@ class QrCodeResult {
     try {
       // Create canvas
       const canvas = createCanvas(this.options.size, this.options.size);
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext('2d');
 
       // Set background
       ctx.fillStyle = this.rgbToHex(this.options.backgroundColor);
@@ -286,8 +286,8 @@ class QrCodeResult {
     try {
       // Check if watermark is an image path
       if (
-        this.options.watermark.includes(".") &&
-        this.options.watermark.includes("/")
+        this.options.watermark.includes('.') &&
+        this.options.watermark.includes('/')
       ) {
         const watermarkImage = await loadImage(this.options.watermark);
         const watermarkSize = this.options.size / 4;
@@ -304,7 +304,7 @@ class QrCodeResult {
         // Text watermark
         ctx.font = `${this.options.labelFontSize}px Arial`;
         ctx.fillStyle = this.rgbToHex(this.options.foregroundColor);
-        ctx.textAlign = "center";
+        ctx.textAlign = 'center';
 
         const position = this.getWatermarkPosition(0);
         ctx.fillText(this.options.watermark, position.x, position.y);
@@ -321,7 +321,7 @@ class QrCodeResult {
   addLabel(ctx) {
     ctx.font = `${this.options.labelFontSize}px Arial`;
     ctx.fillStyle = this.rgbToHex(this.options.foregroundColor);
-    ctx.textAlign = "center";
+    ctx.textAlign = 'center';
 
     const labelY = this.options.size - 10;
     ctx.fillText(this.options.label, this.options.size / 2, labelY);
@@ -334,10 +334,10 @@ class QrCodeResult {
    */
   getWatermarkPosition(size) {
     const positions = {
-      "top-left": { x: 10, y: 10 },
-      "top-right": { x: this.options.size - size - 10, y: 10 },
-      "bottom-left": { x: 10, y: this.options.size - size - 10 },
-      "bottom-right": {
+      'top-left': { x: 10, y: 10 },
+      'top-right': { x: this.options.size - size - 10, y: 10 },
+      'bottom-left': { x: 10, y: this.options.size - size - 10 },
+      'bottom-right': {
         x: this.options.size - size - 10,
         y: this.options.size - size - 10,
       },
@@ -345,13 +345,13 @@ class QrCodeResult {
         x: (this.options.size - size) / 2,
         y: (this.options.size - size) / 2,
       },
-      "top-center": { x: (this.options.size - size) / 2, y: 10 },
-      "bottom-center": {
+      'top-center': { x: (this.options.size - size) / 2, y: 10 },
+      'bottom-center': {
         x: (this.options.size - size) / 2,
         y: this.options.size - size - 10,
       },
-      "left-center": { x: 10, y: (this.options.size - size) / 2 },
-      "right-center": {
+      'left-center': { x: 10, y: (this.options.size - size) / 2 },
+      'right-center': {
         x: this.options.size - size - 10,
         y: (this.options.size - size) / 2,
       },
@@ -366,7 +366,7 @@ class QrCodeResult {
    * @returns {string} Hex color
    */
   rgbToHex(rgb) {
-    return `#${rgb.map((c) => c.toString(16).padStart(2, "0")).join("")}`;
+    return `#${rgb.map((c) => c.toString(16).padStart(2, '0')).join('')}`;
   }
 
   /**
@@ -385,7 +385,7 @@ class QrCodeResult {
    */
   async getDataUri() {
     const buffer = await this.generate();
-    const base64 = buffer.toString("base64");
+    const base64 = buffer.toString('base64');
     return `data:image/${this.options.format};base64,${base64}`;
   }
 

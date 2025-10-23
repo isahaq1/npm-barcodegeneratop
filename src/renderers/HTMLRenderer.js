@@ -9,17 +9,17 @@ class HTMLRenderer {
       height: 100,
       displayValue: true,
       fontSize: 20,
-      textAlign: "center",
-      textPosition: "bottom",
+      textAlign: 'center',
+      textPosition: 'bottom',
       textMargin: 2,
-      background: "#ffffff",
-      lineColor: "#000000",
+      background: '#ffffff',
+      lineColor: '#000000',
       margin: 10,
       marginTop: 10,
       marginBottom: 10,
       marginLeft: 10,
       marginRight: 10,
-      className: "barcode",
+      className: 'barcode',
       id: null,
     };
   }
@@ -55,14 +55,14 @@ class HTMLRenderer {
     const containerId =
       options.id ||
       `barcode-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    const containerClass = options.className || "barcode";
+    const containerClass = options.className || 'barcode';
 
     let html = `<div id="${containerId}" class="${containerClass}" style="${this.getContainerStyles(
       options
     )}">`;
 
     // Add barcode representation
-    if (type === "qrcode") {
+    if (type === 'qrcode') {
       html += this.createQRCodeHTML(data, options);
     } else {
       html += this.createLinearBarcodeHTML(data, type, options);
@@ -75,7 +75,7 @@ class HTMLRenderer {
       )}">${data}</div>`;
     }
 
-    html += "</div>";
+    html += '</div>';
 
     // Add CSS styles
     html += this.getCSSStyles(containerId, options);
@@ -105,7 +105,7 @@ class HTMLRenderer {
       html += `<div style="background-color: ${color}; width: 100%; height: 100%;"></div>`;
     }
 
-    html += "</div>";
+    html += '</div>';
     return html;
   }
 
@@ -132,7 +132,7 @@ class HTMLRenderer {
       }
     }
 
-    html += "</div>";
+    html += '</div>';
     return html;
   }
 

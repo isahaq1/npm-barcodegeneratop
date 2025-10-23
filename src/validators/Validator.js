@@ -2,7 +2,7 @@
  * Validator - Data validation for different barcode types
  */
 
-const { BarcodeTypes } = require("../types/BarcodeTypes");
+const { BarcodeTypes } = require('../types/BarcodeTypes');
 
 class Validator {
   constructor() {
@@ -36,10 +36,10 @@ class Validator {
    * @returns {Object} Validation result
    */
   validate(data, type) {
-    if (!data || typeof data !== "string") {
+    if (!data || typeof data !== 'string') {
       return {
         valid: false,
-        error: "Data must be a non-empty string",
+        error: 'Data must be a non-empty string',
       };
     }
 
@@ -91,49 +91,49 @@ class Validator {
    */
   validateByType(data, type) {
     switch (type) {
-      case "code128":
-      case "code128a":
-      case "code128b":
-      case "code128c":
-      case "code128auto":
-        return this.validateCode128(data, type);
+    case 'code128':
+    case 'code128a':
+    case 'code128b':
+    case 'code128c':
+    case 'code128auto':
+      return this.validateCode128(data, type);
 
-      case "code39":
-      case "code39extended":
-      case "code39checksum":
-      case "code39auto":
-        return this.validateCode39(data, type);
+    case 'code39':
+    case 'code39extended':
+    case 'code39checksum':
+    case 'code39auto':
+      return this.validateCode39(data, type);
 
-      case "code93":
-        return this.validateCode93(data);
+    case 'code93':
+      return this.validateCode93(data);
 
-      case "ean13":
-        return this.validateEAN13(data);
+    case 'ean13':
+      return this.validateEAN13(data);
 
-      case "ean8":
-        return this.validateEAN8(data);
+    case 'ean8':
+      return this.validateEAN8(data);
 
-      case "upca":
-        return this.validateUPCA(data);
+    case 'upca':
+      return this.validateUPCA(data);
 
-      case "upce":
-        return this.validateUPCE(data);
+    case 'upce':
+      return this.validateUPCE(data);
 
-      case "qrcode":
-        return this.validateQRCode(data);
+    case 'qrcode':
+      return this.validateQRCode(data);
 
-      case "datamatrix":
-        return this.validateDataMatrix(data);
+    case 'datamatrix':
+      return this.validateDataMatrix(data);
 
-      case "pdf417":
-        return this.validatePDF417(data);
+    case 'pdf417':
+      return this.validatePDF417(data);
 
-      default:
-        // For other types, just check if data is not empty
-        return {
-          valid: data.length > 0,
-          error: data.length === 0 ? "Data cannot be empty" : null,
-        };
+    default:
+      // For other types, just check if data is not empty
+      return {
+        valid: data.length > 0,
+        error: data.length === 0 ? 'Data cannot be empty' : null,
+      };
     }
   }
 
@@ -148,7 +148,7 @@ class Validator {
     if (!/^[\x00-\x7F]+$/.test(data)) {
       return {
         valid: false,
-        error: "Code 128 supports ASCII characters only",
+        error: 'Code 128 supports ASCII characters only',
       };
     }
 
@@ -162,12 +162,12 @@ class Validator {
    * @returns {Object} Validation result
    */
   validateCode39(data, type) {
-    if (type === "code39extended") {
+    if (type === 'code39extended') {
       // Extended Code 39 supports full ASCII
       if (!/^[\x00-\x7F]+$/.test(data)) {
         return {
           valid: false,
-          error: "Extended Code 39 supports ASCII characters only",
+          error: 'Extended Code 39 supports ASCII characters only',
         };
       }
     } else {
@@ -175,7 +175,7 @@ class Validator {
       if (!this.patterns.code39.test(data)) {
         return {
           valid: false,
-          error: "Code 39 supports characters: A-Z, 0-9, space, -.$/+%",
+          error: 'Code 39 supports characters: A-Z, 0-9, space, -.$/+%',
         };
       }
     }
@@ -192,7 +192,7 @@ class Validator {
     if (!this.patterns.alphanumeric.test(data)) {
       return {
         valid: false,
-        error: "Code 93 supports alphanumeric characters only",
+        error: 'Code 93 supports alphanumeric characters only',
       };
     }
 
@@ -208,7 +208,7 @@ class Validator {
     if (!this.patterns.ean13.test(data)) {
       return {
         valid: false,
-        error: "EAN-13 must be 12 or 13 digits",
+        error: 'EAN-13 must be 12 or 13 digits',
       };
     }
 
@@ -218,7 +218,7 @@ class Validator {
       if (parseInt(data[12]) !== checkDigit) {
         return {
           valid: false,
-          error: "Invalid EAN-13 check digit",
+          error: 'Invalid EAN-13 check digit',
         };
       }
     }
@@ -235,7 +235,7 @@ class Validator {
     if (!this.patterns.ean8.test(data)) {
       return {
         valid: false,
-        error: "EAN-8 must be 7 or 8 digits",
+        error: 'EAN-8 must be 7 or 8 digits',
       };
     }
 
@@ -245,7 +245,7 @@ class Validator {
       if (parseInt(data[7]) !== checkDigit) {
         return {
           valid: false,
-          error: "Invalid EAN-8 check digit",
+          error: 'Invalid EAN-8 check digit',
         };
       }
     }
@@ -262,7 +262,7 @@ class Validator {
     if (!this.patterns.upca.test(data)) {
       return {
         valid: false,
-        error: "UPC-A must be 11 or 12 digits",
+        error: 'UPC-A must be 11 or 12 digits',
       };
     }
 
@@ -278,7 +278,7 @@ class Validator {
     if (!this.patterns.upce.test(data)) {
       return {
         valid: false,
-        error: "UPC-E must be 6 to 8 digits",
+        error: 'UPC-E must be 6 to 8 digits',
       };
     }
 
@@ -295,7 +295,7 @@ class Validator {
     if (data.length === 0) {
       return {
         valid: false,
-        error: "QR Code data cannot be empty",
+        error: 'QR Code data cannot be empty',
       };
     }
 
@@ -311,7 +311,7 @@ class Validator {
     if (data.length === 0) {
       return {
         valid: false,
-        error: "Data Matrix data cannot be empty",
+        error: 'Data Matrix data cannot be empty',
       };
     }
 
@@ -327,7 +327,7 @@ class Validator {
     if (data.length === 0) {
       return {
         valid: false,
-        error: "PDF417 data cannot be empty",
+        error: 'PDF417 data cannot be empty',
       };
     }
 
