@@ -42,7 +42,61 @@
 npm install isahaq-barcode
 ```
 
-**Requirements:** Node.js 14.0 or higher
+**Requirements:** Node.js 18.0 or higher
+
+## 🌐 Browser Compatibility
+
+> **Important:** This package is designed for **Node.js server-side environments** and is not compatible with browser environments.
+
+### Why Not Browser Compatible?
+
+- **Canvas Dependency**: Uses Node.js `canvas` library for image generation
+- **File System Access**: Requires Node.js `fs` module for file operations
+- **Server-Side Rendering**: Designed for server-side barcode generation
+
+### Recommended Usage Patterns
+
+**✅ Server-Side (Recommended):**
+
+```javascript
+// Node.js/Express.js server
+const BarcodeGenerator = require('isahaq-barcode');
+
+// Generate barcode on server
+app.get('/barcode/:data', (req, res) => {
+  const barcode = BarcodeGenerator.png(req.params.data, 'code128');
+  res.set('Content-Type', 'image/png');
+  res.send(barcode);
+});
+```
+
+**✅ Next.js API Routes:**
+
+```javascript
+// pages/api/barcode.js or app/api/barcode/route.js
+import BarcodeGenerator from 'isahaq-barcode';
+
+export default function handler(req, res) {
+  const barcode = BarcodeGenerator.png(req.query.data, 'code128');
+  res.setHeader('Content-Type', 'image/png');
+  res.send(barcode);
+}
+```
+
+**❌ Client-Side (Not Supported):**
+
+```javascript
+// This will NOT work in browsers
+import BarcodeGenerator from 'isahaq-barcode'; // ❌
+```
+
+### Alternative for Client-Side
+
+For browser-based barcode generation, consider:
+
+- **jsbarcode** - Client-side barcode generation
+- **qrcode** - Client-side QR code generation
+- **Server-side API** - Use this package on your backend
 
 **Global CLI Installation:**
 

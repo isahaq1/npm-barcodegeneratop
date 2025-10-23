@@ -4,7 +4,15 @@
 
 const QRCode = require('qrcode');
 const { createCanvas, loadImage } = require('canvas');
-const fs = require('fs').promises;
+
+// Conditional fs import for Node.js environments only
+let fs;
+try {
+  fs = require('fs').promises;
+} catch {
+  // fs not available in browser environments
+  fs = null;
+}
 
 class QrCodeBuilder {
   constructor(options = {}) {
@@ -375,6 +383,11 @@ class QrCodeResult {
    * @returns {Promise<void>}
    */
   async saveToFile(filePath) {
+    if (!fs) {
+      throw new Error(
+        'File system operations are not available in browser environments. Use generate() or getDataUri() methods instead.'
+      );
+    }
     const buffer = await this.generate();
     await fs.writeFile(filePath, buffer);
   }
