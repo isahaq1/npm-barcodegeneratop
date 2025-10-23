@@ -2,13 +2,13 @@
  * Barcode Service - Core service for barcode generation
  */
 
-const { BarcodeTypes } = require("../types/BarcodeTypes");
-const { RenderFormats } = require("../renderers/RenderFormats");
-const PNGRenderer = require("../renderers/PNGRenderer");
-const SVGRenderer = require("../renderers/SVGRenderer");
-const HTMLRenderer = require("../renderers/HTMLRenderer");
-const PDFRenderer = require("../renderers/PDFRenderer");
-const { Validator } = require("../validators/Validator");
+const { BarcodeTypes } = require('../types/BarcodeTypes');
+const { RenderFormats } = require('../renderers/RenderFormats');
+const PNGRenderer = require('../renderers/PNGRenderer');
+const SVGRenderer = require('../renderers/SVGRenderer');
+const HTMLRenderer = require('../renderers/HTMLRenderer');
+const PDFRenderer = require('../renderers/PDFRenderer');
+const { Validator } = require('../validators/Validator');
 
 class BarcodeService {
   constructor() {
@@ -29,16 +29,16 @@ class BarcodeService {
    * @param {Object} options - Additional options
    * @returns {Buffer|string} Generated barcode
    */
-  generate(data, type = "code128", format = "png", options = {}) {
+  generate(data, type = 'code128', format = 'png', options = {}) {
     // Validate inputs
-    if (!data || typeof data !== "string") {
-      throw new Error("Data must be a non-empty string");
+    if (!data || typeof data !== 'string') {
+      throw new Error('Data must be a non-empty string');
     }
 
     if (!BarcodeTypes.isValid(type)) {
       throw new Error(
         `Invalid barcode type: ${type}. Supported types: ${BarcodeTypes.getAll().join(
-          ", "
+          ', '
         )}`
       );
     }
@@ -46,7 +46,7 @@ class BarcodeService {
     if (!RenderFormats.isValid(format)) {
       throw new Error(
         `Invalid format: ${format}. Supported formats: ${RenderFormats.getAll().join(
-          ", "
+          ', '
         )}`
       );
     }
@@ -74,8 +74,8 @@ class BarcodeService {
    * @param {Object} options - Additional options
    * @returns {Buffer} PNG buffer
    */
-  png(data, type = "code128", options = {}) {
-    return this.generate(data, type, "png", options);
+  png(data, type = 'code128', options = {}) {
+    return this.generate(data, type, 'png', options);
   }
 
   /**
@@ -85,8 +85,8 @@ class BarcodeService {
    * @param {Object} options - Additional options
    * @returns {string} SVG string
    */
-  svg(data, type = "code128", options = {}) {
-    return this.generate(data, type, "svg", options);
+  svg(data, type = 'code128', options = {}) {
+    return this.generate(data, type, 'svg', options);
   }
 
   /**
@@ -96,8 +96,8 @@ class BarcodeService {
    * @param {Object} options - Additional options
    * @returns {string} HTML string
    */
-  html(data, type = "code128", options = {}) {
-    return this.generate(data, type, "html", options);
+  html(data, type = 'code128', options = {}) {
+    return this.generate(data, type, 'html', options);
   }
 
   /**
@@ -107,8 +107,8 @@ class BarcodeService {
    * @param {Object} options - Additional options
    * @returns {Buffer} PDF buffer
    */
-  pdf(data, type = "code128", options = {}) {
-    return this.generate(data, type, "pdf", options);
+  pdf(data, type = 'code128', options = {}) {
+    return this.generate(data, type, 'pdf', options);
   }
 
   /**
@@ -118,12 +118,12 @@ class BarcodeService {
    */
   batch(items) {
     if (!Array.isArray(items)) {
-      throw new Error("Items must be an array");
+      throw new Error('Items must be an array');
     }
 
     return items.map((item, index) => {
       try {
-        const { data, type = "code128", format = "png", options = {} } = item;
+        const { data, type = 'code128', format = 'png', options = {} } = item;
         return {
           index,
           success: true,
@@ -138,8 +138,8 @@ class BarcodeService {
           success: false,
           error: error.message,
           data: item.data,
-          type: item.type || "code128",
-          format: item.format || "png",
+          type: item.type || 'code128',
+          format: item.format || 'png',
         };
       }
     });

@@ -5,7 +5,6 @@
 const QRCode = require("qrcode");
 const { createCanvas, loadImage } = require("canvas");
 const fs = require("fs").promises;
-const path = require("path");
 
 class QrCodeBuilder {
   constructor(options = {}) {

@@ -62,7 +62,7 @@ class SVGRenderer {
       // Get SVG string from canvas
       const svgString = canvas.toSVG();
       return svgString;
-    } catch (error) {
+    } catch {
       // Fallback: create SVG manually
       return this.createManualSVG(data, type, options);
     }

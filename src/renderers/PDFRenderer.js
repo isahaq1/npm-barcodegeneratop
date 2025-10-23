@@ -2,7 +2,7 @@
  * PDF Renderer - Renders barcodes as PDF
  */
 
-const PDFDocument = require("pdfkit");
+const PDFDocument = require('pdfkit');
 
 class PDFRenderer {
   constructor() {
@@ -11,11 +11,11 @@ class PDFRenderer {
       height: 100,
       displayValue: true,
       fontSize: 20,
-      textAlign: "center",
-      textPosition: "bottom",
+      textAlign: 'center',
+      textPosition: 'bottom',
       textMargin: 2,
-      background: "#ffffff",
-      lineColor: "#000000",
+      background: '#ffffff',
+      lineColor: '#000000',
       margin: 10,
       marginTop: 10,
       marginBottom: 10,
@@ -51,15 +51,15 @@ class PDFRenderer {
 
       // Collect PDF data
       const chunks = [];
-      doc.on("data", (chunk) => chunks.push(chunk));
+      doc.on('data', (chunk) => chunks.push(chunk));
 
       return new Promise((resolve, reject) => {
-        doc.on("end", () => {
+        doc.on('end', () => {
           const pdfBuffer = Buffer.concat(chunks);
           resolve(pdfBuffer);
         });
 
-        doc.on("error", reject);
+        doc.on('error', reject);
 
         // Add barcode to PDF
         this.addBarcodeToPDF(doc, data, type, renderOptions);
@@ -89,7 +89,7 @@ class PDFRenderer {
     const x = options.marginLeft;
     const y = options.marginTop;
 
-    if (type === "qrcode") {
+    if (type === 'qrcode') {
       this.addQRCodeToPDF(doc, data, x, y, options);
     } else {
       this.addLinearBarcodeToPDF(doc, data, type, x, y, options);

@@ -119,7 +119,6 @@ class HTMLRenderer {
   createLinearBarcodeHTML(data, type, options) {
     const barWidth = options.width || 2;
     const barHeight = options.height || 100;
-    const totalWidth = data.length * barWidth * 2;
 
     let html = `<div class="linear-barcode" style="display: flex; align-items: flex-start; background: ${options.background}; padding: 10px;">`;
 
@@ -174,7 +173,7 @@ class HTMLRenderer {
    * @param {Object} options - Render options
    * @returns {string} CSS styles
    */
-  getCSSStyles(containerId, options) {
+  getCSSStyles(containerId) {
     return `
       <style>
         #${containerId} {

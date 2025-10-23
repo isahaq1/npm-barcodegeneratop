@@ -3,10 +3,10 @@
  * A universal barcode generator package supporting multiple barcode types and output formats
  */
 
-const BarcodeService = require("./src/services/BarcodeService");
-const QrCodeBuilder = require("./src/builders/QrCodeBuilder");
-const { BarcodeTypes } = require("./src/types/BarcodeTypes");
-const { RenderFormats } = require("./src/renderers/RenderFormats");
+const BarcodeService = require('./src/services/BarcodeService');
+const QrCodeBuilder = require('./src/builders/QrCodeBuilder');
+const { BarcodeTypes } = require('./src/types/BarcodeTypes');
+const { RenderFormats } = require('./src/renderers/RenderFormats');
 
 // Main service instance
 const barcodeService = new BarcodeService();
@@ -22,8 +22,8 @@ class BarcodeGenerator {
    * @param {Object} options - Additional options
    * @returns {Buffer} PNG buffer
    */
-  static png(data, type = "code128", options = {}) {
-    return barcodeService.generate(data, type, "png", options);
+  static png(data, type = 'code128', options = {}) {
+    return barcodeService.generate(data, type, 'png', options);
   }
 
   /**
@@ -33,8 +33,8 @@ class BarcodeGenerator {
    * @param {Object} options - Additional options
    * @returns {string} SVG string
    */
-  static svg(data, type = "code128", options = {}) {
-    return barcodeService.generate(data, type, "svg", options);
+  static svg(data, type = 'code128', options = {}) {
+    return barcodeService.generate(data, type, 'svg', options);
   }
 
   /**
@@ -44,8 +44,8 @@ class BarcodeGenerator {
    * @param {Object} options - Additional options
    * @returns {string} HTML string
    */
-  static html(data, type = "code128", options = {}) {
-    return barcodeService.generate(data, type, "html", options);
+  static html(data, type = 'code128', options = {}) {
+    return barcodeService.generate(data, type, 'html', options);
   }
 
   /**
@@ -55,8 +55,8 @@ class BarcodeGenerator {
    * @param {Object} options - Additional options
    * @returns {Buffer} PDF buffer
    */
-  static pdf(data, type = "code128", options = {}) {
-    return barcodeService.generate(data, type, "pdf", options);
+  static pdf(data, type = 'code128', options = {}) {
+    return barcodeService.generate(data, type, 'pdf', options);
   }
 
   /**
@@ -109,15 +109,15 @@ class BarcodeGenerator {
    */
   static getWatermarkPositions() {
     return [
-      "top-left",
-      "top-right",
-      "bottom-left",
-      "bottom-right",
-      "center",
-      "top-center",
-      "bottom-center",
-      "left-center",
-      "right-center",
+      'top-left',
+      'top-right',
+      'bottom-left',
+      'bottom-right',
+      'center',
+      'top-center',
+      'bottom-center',
+      'left-center',
+      'right-center',
     ];
   }
 }

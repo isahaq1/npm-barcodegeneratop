@@ -2,8 +2,8 @@
  * PNG Renderer - Renders barcodes as PNG images
  */
 
-const { createCanvas } = require("canvas");
-const JsBarcode = require("jsbarcode");
+const { createCanvas } = require('canvas');
+const JsBarcode = require('jsbarcode');
 
 class PNGRenderer {
   constructor() {
@@ -12,11 +12,11 @@ class PNGRenderer {
       height: 100,
       displayValue: true,
       fontSize: 20,
-      textAlign: "center",
-      textPosition: "bottom",
+      textAlign: 'center',
+      textPosition: 'bottom',
       textMargin: 2,
-      background: "#ffffff",
-      lineColor: "#000000",
+      background: '#ffffff',
+      lineColor: '#000000',
       margin: 10,
       marginTop: 10,
       marginBottom: 10,
@@ -39,7 +39,7 @@ class PNGRenderer {
 
       // Create canvas
       const canvas = createCanvas(400, 200);
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext('2d');
 
       // Set background
       ctx.fillStyle = renderOptions.background;
@@ -65,7 +65,7 @@ class PNGRenderer {
       });
 
       // Convert to PNG buffer
-      return canvas.toBuffer("image/png");
+      return canvas.toBuffer('image/png');
     } catch (error) {
       throw new Error(`PNG rendering failed: ${error.message}`);
     }
@@ -78,29 +78,29 @@ class PNGRenderer {
    */
   mapBarcodeType(type) {
     const typeMap = {
-      code128: "CODE128",
-      code128a: "CODE128A",
-      code128b: "CODE128B",
-      code128c: "CODE128C",
-      code128auto: "CODE128",
-      code39: "CODE39",
-      code39extended: "CODE39",
-      code39checksum: "CODE39",
-      code39auto: "CODE39",
-      code93: "CODE93",
-      ean13: "EAN13",
-      ean8: "EAN8",
-      upca: "UPC",
-      upce: "UPC",
-      codabar: "codabar",
-      code11: "CODE11",
-      msi: "MSI",
-      pharmazentral: "pharmazentral",
-      interleaved25: "ITF",
-      standard25: "STD25",
+      code128: 'CODE128',
+      code128a: 'CODE128A',
+      code128b: 'CODE128B',
+      code128c: 'CODE128C',
+      code128auto: 'CODE128',
+      code39: 'CODE39',
+      code39extended: 'CODE39',
+      code39checksum: 'CODE39',
+      code39auto: 'CODE39',
+      code93: 'CODE93',
+      ean13: 'EAN13',
+      ean8: 'EAN8',
+      upca: 'UPC',
+      upce: 'UPC',
+      codabar: 'codabar',
+      code11: 'CODE11',
+      msi: 'MSI',
+      pharmazentral: 'pharmazentral',
+      interleaved25: 'ITF',
+      standard25: 'STD25',
     };
 
-    return typeMap[type] || "CODE128";
+    return typeMap[type] || 'CODE128';
   }
 
   /**

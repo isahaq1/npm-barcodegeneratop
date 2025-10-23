@@ -4,30 +4,30 @@
 
 class RenderFormats {
   static FORMATS = {
-    PNG: "png",
-    SVG: "svg",
-    HTML: "html",
-    PDF: "pdf",
-    JPG: "jpg",
-    JPEG: "jpeg",
+    PNG: 'png',
+    SVG: 'svg',
+    HTML: 'html',
+    PDF: 'pdf',
+    JPG: 'jpg',
+    JPEG: 'jpeg',
   };
 
   static MIME_TYPES = {
-    png: "image/png",
-    svg: "image/svg+xml",
-    html: "text/html",
-    pdf: "application/pdf",
-    jpg: "image/jpeg",
-    jpeg: "image/jpeg",
+    png: 'image/png',
+    svg: 'image/svg+xml',
+    html: 'text/html',
+    pdf: 'application/pdf',
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
   };
 
   static EXTENSIONS = {
-    png: ".png",
-    svg: ".svg",
-    html: ".html",
-    pdf: ".pdf",
-    jpg: ".jpg",
-    jpeg: ".jpeg",
+    png: '.png',
+    svg: '.svg',
+    html: '.html',
+    pdf: '.pdf',
+    jpg: '.jpg',
+    jpeg: '.jpeg',
   };
 
   /**
@@ -53,7 +53,7 @@ class RenderFormats {
    * @returns {string} MIME type
    */
   static getMimeType(format) {
-    return this.MIME_TYPES[format] || "application/octet-stream";
+    return this.MIME_TYPES[format] || 'application/octet-stream';
   }
 
   /**
@@ -62,7 +62,7 @@ class RenderFormats {
    * @returns {string} File extension
    */
   static getExtension(format) {
-    return this.EXTENSIONS[format] || "";
+    return this.EXTENSIONS[format] || '';
   }
 
   /**
@@ -72,15 +72,15 @@ class RenderFormats {
    */
   static getDescription(format) {
     const descriptions = {
-      png: "Portable Network Graphics - Raster image format",
-      svg: "Scalable Vector Graphics - Vector image format",
-      html: "HyperText Markup Language - Web page format",
-      pdf: "Portable Document Format - Document format",
-      jpg: "JPEG - Compressed raster image format",
-      jpeg: "JPEG - Compressed raster image format",
+      png: 'Portable Network Graphics - Raster image format',
+      svg: 'Scalable Vector Graphics - Vector image format',
+      html: 'HyperText Markup Language - Web page format',
+      pdf: 'Portable Document Format - Document format',
+      jpg: 'JPEG - Compressed raster image format',
+      jpeg: 'JPEG - Compressed raster image format',
     };
 
-    return descriptions[format] || "Unknown format";
+    return descriptions[format] || 'Unknown format';
   }
 }
 

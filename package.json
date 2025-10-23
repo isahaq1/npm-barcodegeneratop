@@ -1,5 +1,5 @@
 {
-  "name": "@isahaq/barcode",
+  "name": "isahaq-barcode",
   "version": "1.0.0",
   "description": "A universal barcode generator package supporting multiple barcode types and output formats, with extra features like batch generation, watermarking, validation, CLI, and Express.js integration",
   "main": "index.js",
@@ -7,12 +7,12 @@
     "barcode-generate": "./bin/generate.js"
   },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "build": "npm run lint && npm test",
+    "test": "npx jest",
+    "test:watch": "npx jest --watch",
+    "test:coverage": "npx jest --coverage",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "build": "npm run lint",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

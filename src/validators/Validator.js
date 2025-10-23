@@ -143,7 +143,7 @@ class Validator {
    * @param {string} type - The Code 128 variant
    * @returns {Object} Validation result
    */
-  validateCode128(data, type) {
+  validateCode128(data) {
     // Code 128 supports ASCII characters
     if (!/^[\x00-\x7F]+$/.test(data)) {
       return {

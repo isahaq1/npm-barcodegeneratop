@@ -3,20 +3,20 @@
  */
 
 // Mock canvas for testing
-jest.mock("canvas", () => ({
+jest.mock('canvas', () => ({
   createCanvas: jest.fn(() => ({
     getContext: jest.fn(() => ({
-      fillStyle: "",
+      fillStyle: '',
       fillRect: jest.fn(),
       drawImage: jest.fn(),
-      font: "",
-      fillColor: "",
+      font: '',
+      fillColor: '',
       text: jest.fn(),
       rect: jest.fn(),
       fill: jest.fn(),
     })),
-    toBuffer: jest.fn(() => Buffer.from("mock-png-data")),
-    toSVG: jest.fn(() => "<svg>mock</svg>"),
+    toBuffer: jest.fn(() => Buffer.from('mock-png-data')),
+    toSVG: jest.fn(() => '<svg>mock</svg>'),
   })),
   loadImage: jest.fn(() =>
     Promise.resolve({
@@ -27,7 +27,7 @@ jest.mock("canvas", () => ({
 }));
 
 // Mock fs.promises
-jest.mock("fs", () => ({
+jest.mock('fs', () => ({
   promises: {
     writeFile: jest.fn(() => Promise.resolve()),
     readFile: jest.fn(() => Promise.resolve('{"test": "data"}')),
@@ -36,17 +36,17 @@ jest.mock("fs", () => ({
 }));
 
 // Mock JsBarcode
-jest.mock("jsbarcode", () => jest.fn());
+jest.mock('jsbarcode', () => jest.fn());
 
 // Mock QRCode
-jest.mock("qrcode", () => ({
+jest.mock('qrcode', () => ({
   toDataURL: jest.fn(() =>
-    Promise.resolve("data:image/png;base64,mock-qr-data")
+    Promise.resolve('data:image/png;base64,mock-qr-data')
   ),
 }));
 
 // Mock PDFDocument
-jest.mock("pdfkit", () => {
+jest.mock('pdfkit', () => {
   return jest.fn().mockImplementation(() => ({
     rect: jest.fn().mockReturnThis(),
     fillColor: jest.fn().mockReturnThis(),
