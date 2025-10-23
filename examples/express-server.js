@@ -26,24 +26,24 @@ app.get('/barcode/:data', async (req, res) => {
     let contentType;
 
     switch (format) {
-    case 'png':
-      result = BarcodeGenerator.png(data, type, options);
-      contentType = 'image/png';
-      break;
-    case 'svg':
-      result = BarcodeGenerator.svg(data, type, options);
-      contentType = 'image/svg+xml';
-      break;
-    case 'html':
-      result = BarcodeGenerator.html(data, type, options);
-      contentType = 'text/html';
-      break;
-    case 'pdf':
-      result = await BarcodeGenerator.pdf(data, type, options);
-      contentType = 'application/pdf';
-      break;
-    default:
-      throw new Error(`Unsupported format: ${format}`);
+      case 'png':
+        result = BarcodeGenerator.png(data, type, options);
+        contentType = 'image/png';
+        break;
+      case 'svg':
+        result = BarcodeGenerator.svg(data, type, options);
+        contentType = 'image/svg+xml';
+        break;
+      case 'html':
+        result = BarcodeGenerator.html(data, type, options);
+        contentType = 'text/html';
+        break;
+      case 'pdf':
+        result = await BarcodeGenerator.pdf(data, type, options);
+        contentType = 'application/pdf';
+        break;
+      default:
+        throw new Error(`Unsupported format: ${format}`);
     }
 
     res.set('Content-Type', contentType);

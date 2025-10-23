@@ -17,15 +17,14 @@ module.exports = [
         document: 'readonly',
       },
     },
+    plugins: {
+      prettier: require('eslint-plugin-prettier'),
+    },
     rules: {
-      indent: ['error', 2],
-      quotes: ['error', 'single'],
-      semi: ['error', 'always'],
+      'prettier/prettier': 'error',
       'no-unused-vars': 'warn',
       'no-console': 'off',
       'no-undef': 'error',
-      'no-trailing-spaces': 'error',
-      'eol-last': 'error',
     },
   },
   {
@@ -54,15 +53,14 @@ module.exports = [
         jest: 'readonly',
       },
     },
+    plugins: {
+      prettier: require('eslint-plugin-prettier'),
+    },
     rules: {
-      indent: ['error', 2],
-      quotes: ['error', 'single'],
-      semi: ['error', 'always'],
+      'prettier/prettier': 'error',
       'no-unused-vars': 'warn',
       'no-console': 'off',
       'no-undef': 'error',
-      'no-trailing-spaces': 'error',
-      'eol-last': 'error',
     },
   },
 ];

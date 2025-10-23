@@ -160,7 +160,7 @@ class SVGRenderer {
   createXMLDocument() {
     // Create a minimal XML document for JsBarcode
     return {
-      createElement: (tagName) => ({
+      createElement: tagName => ({
         tagName,
         setAttribute: () => {},
         appendChild: () => {},

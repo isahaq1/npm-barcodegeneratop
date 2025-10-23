@@ -51,7 +51,7 @@ class PDFRenderer {
 
       // Collect PDF data
       const chunks = [];
-      doc.on('data', (chunk) => chunks.push(chunk));
+      doc.on('data', chunk => chunks.push(chunk));
 
       return new Promise((resolve, reject) => {
         doc.on('end', () => {

@@ -91,49 +91,49 @@ class Validator {
    */
   validateByType(data, type) {
     switch (type) {
-    case 'code128':
-    case 'code128a':
-    case 'code128b':
-    case 'code128c':
-    case 'code128auto':
-      return this.validateCode128(data, type);
+      case 'code128':
+      case 'code128a':
+      case 'code128b':
+      case 'code128c':
+      case 'code128auto':
+        return this.validateCode128(data, type);
 
-    case 'code39':
-    case 'code39extended':
-    case 'code39checksum':
-    case 'code39auto':
-      return this.validateCode39(data, type);
+      case 'code39':
+      case 'code39extended':
+      case 'code39checksum':
+      case 'code39auto':
+        return this.validateCode39(data, type);
 
-    case 'code93':
-      return this.validateCode93(data);
+      case 'code93':
+        return this.validateCode93(data);
 
-    case 'ean13':
-      return this.validateEAN13(data);
+      case 'ean13':
+        return this.validateEAN13(data);
 
-    case 'ean8':
-      return this.validateEAN8(data);
+      case 'ean8':
+        return this.validateEAN8(data);
 
-    case 'upca':
-      return this.validateUPCA(data);
+      case 'upca':
+        return this.validateUPCA(data);
 
-    case 'upce':
-      return this.validateUPCE(data);
+      case 'upce':
+        return this.validateUPCE(data);
 
-    case 'qrcode':
-      return this.validateQRCode(data);
+      case 'qrcode':
+        return this.validateQRCode(data);
 
-    case 'datamatrix':
-      return this.validateDataMatrix(data);
+      case 'datamatrix':
+        return this.validateDataMatrix(data);
 
-    case 'pdf417':
-      return this.validatePDF417(data);
+      case 'pdf417':
+        return this.validatePDF417(data);
 
-    default:
-      // For other types, just check if data is not empty
-      return {
-        valid: data.length > 0,
-        error: data.length === 0 ? 'Data cannot be empty' : null,
-      };
+      default:
+        // For other types, just check if data is not empty
+        return {
+          valid: data.length > 0,
+          error: data.length === 0 ? 'Data cannot be empty' : null,
+        };
     }
   }
 

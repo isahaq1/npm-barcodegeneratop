@@ -31,7 +31,7 @@ program
   .option('--no-text', 'Hide text below barcode')
   .option('--foreground <color>', 'Foreground color (hex)', '#000000')
   .option('--background <color>', 'Background color (hex)', '#ffffff')
-  .action(async (options) => {
+  .action(async options => {
     const spinner = ora('Generating barcode...').start();
 
     try {
@@ -45,36 +45,36 @@ program
 
       let result;
       switch (options.format) {
-      case 'png':
-        result = BarcodeGenerator.png(
-          options.data,
-          options.type,
-          renderOptions
-        );
-        break;
-      case 'svg':
-        result = BarcodeGenerator.svg(
-          options.data,
-          options.type,
-          renderOptions
-        );
-        break;
-      case 'html':
-        result = BarcodeGenerator.html(
-          options.data,
-          options.type,
-          renderOptions
-        );
-        break;
-      case 'pdf':
-        result = BarcodeGenerator.pdf(
-          options.data,
-          options.type,
-          renderOptions
-        );
-        break;
-      default:
-        throw new Error(`Unsupported format: ${options.format}`);
+        case 'png':
+          result = BarcodeGenerator.png(
+            options.data,
+            options.type,
+            renderOptions
+          );
+          break;
+        case 'svg':
+          result = BarcodeGenerator.svg(
+            options.data,
+            options.type,
+            renderOptions
+          );
+          break;
+        case 'html':
+          result = BarcodeGenerator.html(
+            options.data,
+            options.type,
+            renderOptions
+          );
+          break;
+        case 'pdf':
+          result = BarcodeGenerator.pdf(
+            options.data,
+            options.type,
+            renderOptions
+          );
+          break;
+        default:
+          throw new Error(`Unsupported format: ${options.format}`);
       }
 
       if (options.output) {
@@ -115,7 +115,7 @@ program
   .option('--label <text>', 'Label text')
   .option('--watermark <text>', 'Watermark text')
   .option('--watermark-position <position>', 'Watermark position', 'center')
-  .action(async (options) => {
+  .action(async options => {
     const spinner = ora('Generating QR code...').start();
 
     try {
@@ -165,7 +165,7 @@ program
   .description('Generate multiple barcodes from a JSON file')
   .requiredOption('-i, --input <file>', 'Input JSON file')
   .option('-o, --output-dir <dir>', 'Output directory', './output')
-  .action(async (options) => {
+  .action(async options => {
     const spinner = ora('Processing batch generation...').start();
 
     try {
@@ -215,7 +215,7 @@ program
   .action(() => {
     const types = BarcodeGenerator.getBarcodeTypes();
     console.log(chalk.blue('Supported barcode types:'));
-    types.forEach((type) => {
+    types.forEach(type => {
       console.log(`  - ${type}`);
     });
   });
@@ -227,7 +227,7 @@ program
   .action(() => {
     const formats = BarcodeGenerator.getRenderFormats();
     console.log(chalk.blue('Supported output formats:'));
-    formats.forEach((format) => {
+    formats.forEach(format => {
       console.log(`  - ${format}`);
     });
   });
@@ -238,7 +238,7 @@ program
   .description('Validate data for a specific barcode type')
   .requiredOption('-d, --data <data>', 'Data to validate')
   .requiredOption('-t, --type <type>', 'Barcode type')
-  .action((options) => {
+  .action(options => {
     try {
       const validation = BarcodeGenerator.validate(options.data, options.type);
 
@@ -263,10 +263,10 @@ function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
     ? [
-      parseInt(result[1], 16),
-      parseInt(result[2], 16),
-      parseInt(result[3], 16),
-    ]
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16),
+      ]
     : [0, 0, 0];
 }
 

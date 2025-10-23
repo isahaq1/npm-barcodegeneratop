@@ -366,7 +366,7 @@ class QrCodeResult {
    * @returns {string} Hex color
    */
   rgbToHex(rgb) {
-    return `#${rgb.map((c) => c.toString(16).padStart(2, '0')).join('')}`;
+    return `#${rgb.map(c => c.toString(16).padStart(2, '0')).join('')}`;
   }
 
   /**
