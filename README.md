@@ -39,7 +39,7 @@
 ## 📦 Installation
 
 ```bash
-npm install isahaq-barcode
+npm install @isahaq/barcode
 ```
 
 **Requirements:** Node.js 18.0 or higher
@@ -60,7 +60,7 @@ npm install isahaq-barcode
 
 ```javascript
 // Node.js/Express.js server
-const BarcodeGenerator = require('isahaq-barcode');
+const BarcodeGenerator = require('@isahaq/barcode');
 
 // Generate barcode on server
 app.get('/barcode/:data', (req, res) => {
@@ -74,7 +74,7 @@ app.get('/barcode/:data', (req, res) => {
 
 ```javascript
 // pages/api/barcode.js or app/api/barcode/route.js
-import BarcodeGenerator from 'isahaq-barcode';
+import BarcodeGenerator from '@isahaq/barcode';
 
 export default function handler(req, res) {
   const barcode = BarcodeGenerator.png(req.query.data, 'code128');
@@ -87,7 +87,7 @@ export default function handler(req, res) {
 
 ```javascript
 // This will NOT work in browsers
-import BarcodeGenerator from 'isahaq-barcode'; // ❌
+import BarcodeGenerator from '@isahaq/barcode'; // ❌
 ```
 
 ### Alternative for Client-Side
@@ -101,7 +101,7 @@ For browser-based barcode generation, consider:
 **Global CLI Installation:**
 
 ```bash
-npm install -g isahaq-barcode
+npm install -g @isahaq/barcode
 ```
 
 ---
@@ -109,7 +109,7 @@ npm install -g isahaq-barcode
 ## 🚀 Quick Start
 
 ```javascript
-const BarcodeGenerator = require('isahaq-barcode');
+const BarcodeGenerator = require('@isahaq/barcode');
 
 // Generate PNG barcode
 const pngBuffer = BarcodeGenerator.png('1234567890', 'code128');
@@ -173,7 +173,7 @@ await qrCode.saveToFile('qr-code.png');
 ### Basic Generation
 
 ```javascript
-const BarcodeGenerator = require('isahaq-barcode');
+const BarcodeGenerator = require('@isahaq/barcode');
 
 // PNG with custom options
 const barcode = BarcodeGenerator.png('1234567890', 'code128', {
@@ -286,7 +286,7 @@ if (validation.valid) {
 
 ```javascript
 const express = require('express');
-const BarcodeGenerator = require('isahaq-barcode');
+const BarcodeGenerator = require('@isahaq/barcode');
 
 const app = express();
 
@@ -352,7 +352,7 @@ app.listen(3000, () => {
 
 ```javascript
 const express = require('express');
-const BarcodeGenerator = require('isahaq-barcode');
+const BarcodeGenerator = require('@isahaq/barcode');
 
 const app = express();
 

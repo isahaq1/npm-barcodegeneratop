@@ -2,7 +2,7 @@
  * Basic usage examples for Isahaq Barcode Generator
  */
 
-const BarcodeGenerator = require('../index');
+const BarcodeGenerator = require('@isahaq/barcode');
 
 async function basicExamples() {
   console.log('🚀 Basic Barcode Generation Examples\n');
