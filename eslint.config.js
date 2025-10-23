@@ -15,6 +15,7 @@ module.exports = [
         require: 'readonly',
         exports: 'readonly',
         document: 'readonly',
+        FileReader: 'readonly',
       },
     },
     plugins: {

@@ -10,7 +10,7 @@ let fs;
 try {
   fs = require('fs').promises;
 } catch {
-  // fs not available in browser environments
+  // fs not available in browser environment
   fs = null;
 }
 

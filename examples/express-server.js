@@ -3,7 +3,7 @@
  */
 
 const express = require('express');
-const BarcodeGenerator = require('@isahaq/barcode');
+const BarcodeGenerator = require('../index');
 
 const app = express();
 const PORT = process.env.PORT || 3000;

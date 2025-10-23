@@ -1,12 +1,13 @@
 {
   "name": "isahaq-barcode",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "A universal barcode generator package supporting multiple barcode types and output formats, with extra features like batch generation, watermarking, validation, CLI, and Express.js integration",
   "main": "index.js",
   "browser": {
     "fs": false,
     "path": false,
-    "os": false
+    "os": false,
+    "canvas": false
   },
   "bin": {
     "barcode-generate": "./bin/generate.js"
@@ -52,6 +53,10 @@
     "jsbarcode": "^3.12.1",
     "ora": "^9.0.0",
     "pdfkit": "^0.17.2",
+    "qrcode": "^1.5.4"
+  },
+  "peerDependencies": {
+    "jsbarcode": "^3.12.1",
     "qrcode": "^1.5.4"
   },
   "devDependencies": {
