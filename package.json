@@ -1,5 +1,5 @@
 {
-  "name": "isahaq-barcode",
+  "name": "@isahaq/barcode",
   "version": "1.0.0",
   "description": "A universal barcode generator package supporting multiple barcode types and output formats, with extra features like batch generation, watermarking, validation, CLI, and Express.js integration",
   "main": "index.js",
